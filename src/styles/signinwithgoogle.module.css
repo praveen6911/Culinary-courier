@@ -1,0 +1,45 @@
+.google-signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  #google-signin-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4285F4;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  #google-signin-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  #google-signin-button:hover {
+    background-color: #357AE8;
+  }
+  
+  #google-signin-button:active {
+    background-color: #3367D6;
+  }
+  
+  .google-signin-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .or{
+    text-align: center;
+    color: grey;
+}

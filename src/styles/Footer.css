@@ -1,0 +1,27 @@
+/* Footer.css */
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer strong {
+  font-weight: bold;
+}
+
+.footer strong span {
+  color: #d9534f; /* or any other color you prefer */
+}

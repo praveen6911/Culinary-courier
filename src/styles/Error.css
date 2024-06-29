@@ -1,0 +1,39 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .error-page img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .error-page h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .error-page .error-data {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: red; /* Adjust color as needed */
+  }
+  
+  .error-page .error-back-home {
+    font-size: 16px;
+  }
+  
+  .error-page .error-back-home a {
+    color: blue; /* Adjust color as needed */
+    text-decoration: none;
+  }
+  
+  .error-page .error-back-home a:hover {
+    text-decoration: underline;
+  }
+  

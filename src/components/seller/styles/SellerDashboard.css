@@ -1,0 +1,18 @@
+.seller-dashboard {
+    padding: 20px;
+  }
+  
+  .dashboard-sections {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .seller-orders,
+  .seller-products {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  

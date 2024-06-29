@@ -1,0 +1,42 @@
+/* Developer.css */
+
+.Developer {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .Developer h1 {
+    font-size: 24px;
+    color: #343a40;
+    margin-bottom: 10px;
+  }
+  
+  .Developer h2 {
+    font-size: 18px;
+    color: #6c757d;
+    margin-bottom: 5px;
+  }
+  
+  .Developer h3 {
+    font-size: 16px;
+    color: #6c757d;
+    margin-bottom: 5px;
+  }
+  
+  .Developer h4 {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 5px;
+  }
+  
+  .Developer-avatar {
+    width: 150px; /* Sets the width of the image */
+    height: 150px; /* Sets the height of the image */
+    border-radius: 50%; /* Makes the image circular */
+    margin-bottom: 20px; /* Adds space below the image */
+    object-fit: cover; /* Ensures the image covers the container proportionally */
+    border: 2px solid #dee2e6; /* Adds a border around the image */
+  }

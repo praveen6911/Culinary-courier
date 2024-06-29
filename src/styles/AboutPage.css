@@ -1,0 +1,62 @@
+/* AboutUs page styling */
+
+.about-us {
+  padding: 50px 0;
+  background-color: #f9f9f9; /* Light gray background color */
+  color: #333; /* Dark text color */
+  text-align: center; /* Center align text */
+  display:flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center align items horizontally */
+}
+
+.container {
+  width: 80%; /* Width of the container */
+  max-width: 1200px; /* Maximum width for larger screens */
+  margin: 0 auto; /* Center align the container */
+}
+
+h1 {
+  font-size: 36px; /* Large font size for main headings */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+p {
+  font-size: 18px; /* Regular font size for paragraphs */
+  line-height: 1.6; /* Line height for better readability */
+  margin-bottom: 50px; /* Space below paragraphs */
+}
+
+/* Developer components styling */
+.developer-card {
+  margin-top: 30px; /* Space between paragraphs and developer cards */
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between developer cards */
+}
+
+/* Developer card styling */
+.developer-card .card {
+  width: 300px; /* Card width */
+  background-color: #fff; /* White background */
+  padding: 20px; /* Padding inside the card */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  text-align: left; /* Align text left */
+}
+
+.developer-card .card h2 {
+  font-size: 20px; /* Heading font size */
+  margin-bottom: 10px; /* Space below heading */
+}
+
+.developer-card .card p {
+  font-size: 16px; /* Paragraph font size */
+  line-height: 1.4; /* Line height for paragraphs */
+  color: #666; /* Lighter text color */
+}
+
+#about{
+  display: flex;
+  flex-direction: column;
+}
