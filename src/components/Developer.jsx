@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Developer.css";
-import { GITHUB_TOKEN } from "../utils/constants";
+// import { GITHUB_TOKEN } from "../utils/constants";
 
 const Developer = (props) => {
   const [userData, setUserData] = useState([]);
@@ -11,7 +11,7 @@ const Developer = (props) => {
   }, []);
 
   const fetchUserInfo = async () => {
-    const token = {GITHUB_TOKEN}; // Replace with your actual token
+    const token = {/* GITHUB_TOKEN */}; // Replace with your actual token
 
     try {
       const response = await fetch("https://api.github.com/users/praveen6911", {

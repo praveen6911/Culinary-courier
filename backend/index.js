@@ -31,8 +31,11 @@ mongoose
   });
 
 // Import User model
-const User = require("./models/users"); // Adjust path as needed
+const User = require("./models/users"); 
 const Seller = require("./models/sellers");
+const Product = require('./models/products');
+
+
 
 app.get("/usersignup", (req, res) => {
   res.render("usersignup");
@@ -213,6 +216,50 @@ app.post("/google-login", async (req, res) => {
     res.status(200).send(user);
   } catch (error) {
     res.status(500).send({ error: "Failed to process Google login", details: error.message });
+  }
+});
+
+app.get('/addProduct',async (req, res) => {
+  res.render('addProduct');
+});
+
+
+app.get("/products", async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.status(200).send(products);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch sellers", details: error });
+  }
+});
+
+app.get("/products/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).send({ error: "Product not found" });
+    }
+    res.render("updateProduct", { product });
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch product", details: error });
+  }
+});
+
+app.post('/addProduct', async (req, res) => {
+  try {
+    const { name, description, price, sellerId } = req.body;
+    
+    const newProduct = new Product({
+      name,
+      description,
+      price,
+      sellerId,
+    });
+
+    await newProduct.save();
+    res.redirect('/products');
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

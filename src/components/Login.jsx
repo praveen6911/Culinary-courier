@@ -18,6 +18,7 @@ const Login = ({ setLoggedInUser }) => {
       const response = await fetch(API_URL + "users");
       
       const data = await response.json();
+      console.log("idiVacheydata",data)
       setUsers(data);
       console.log("idi kuda",users)
     } catch (error) {
@@ -27,7 +28,7 @@ const Login = ({ setLoggedInUser }) => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  },[]);
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);

@@ -13,6 +13,7 @@ const EditSellerProfile = ({ setLoggedinSeller, seller }) => {
 
   const navigate = useNavigate();
   const API_URL = "http://localhost:5000/";
+  console.log("ihtanu kuda", seller);
 
   useEffect(() => {
     // Load seller profile data into form

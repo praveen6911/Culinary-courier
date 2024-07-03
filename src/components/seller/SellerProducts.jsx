@@ -1,11 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SellerHeader from './SellerHeader';
-const SellerProducts = () => {
+import { Link } from 'react-router-dom';
+
+const SellerProducts = ({ seller }) => {
+  const [products, setProducts] = useState([]);
+  const[sellerproducts,setsellerproducts]=useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/products'); // Adjust URL as needed
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        const filteredProducts = data.filter(product => product.sellerId === seller._id)
+        setProducts(filteredProducts);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+   
+
+
+
   return (
     <div className="seller-products">
-        {/* <SellerHeader/> */}
+      <SellerHeader />
       <h2>Products</h2>
-      <p>List of products will go here...</p>
+      <ul>
+        {products.map(product => (
+          <li key={product._id}>
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+            <p>Seller: {product.sellerId}</p>
+          </li>
+        ))}
+      </ul>
+      <Link to="/addProduct"><button>Add Product</button></Link>
     </div>
   );
 };

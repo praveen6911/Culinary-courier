@@ -30,10 +30,10 @@ import SellerEditProfile from "./components/seller/SellerEditProfile";
 import SigninWithGoogle from "./components/signinwithgoogle";
 import UserProfile from "./components/UserProfile";
 
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserEditProfile from "./components/UserEditProfile";
+import AddProducts from "./components/seller/AddProducts";
 
 const Grocery = lazy(() => import("./components/grocery"));
 const AppLayout = () => {
@@ -57,19 +57,18 @@ const AppLayout = () => {
     <Provider store={appStore}>
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <div className="App">
-          { location.pathname !== "/SellerSignup" &&
+          {location.pathname !== "/SellerSignup" &&
             location.pathname !== "/SellerLogin" &&
             location.pathname !== "/SellerDashboard" &&
             location.pathname !== "/SellerProducts" &&
             location.pathname !== "/SellerOrders" &&
-            location.pathname !== "/SellerProfile" && 
-            location.pathname !== "/SellerSignup" && location.pathname !== "/SellerEditProfile" &&(
+            location.pathname !== "/SellerProfile" &&
+            location.pathname !== "/SellerSignup" &&
+            location.pathname !== "/SellerEditProfile" && (
               <Header user={loggedInUser} setLoggedInUser={setLoggedInUser} />
             )}
           {showLogin && location.pathname !== "/signup" ? (
-
             <Login setLoggedInUser={setLoggedInUser} />
-
           ) : (
             <Routes>
               <Route path="/" element={<Body />} />
@@ -78,21 +77,45 @@ const AppLayout = () => {
               <Route path="/cart" element={<Cart />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/Sellersignup" element={<SellerSignup />} />
-              <Route path="/UserProfile" element={<UserProfile user={loggedInUser} />} />
-              <Route path="/editUserProfile" element={<UserEditProfile user={loggedInUser} setLoggedInUser={setLoggedInUser} />} />
+              <Route
+                path="/UserProfile"
+                element={<UserProfile user={loggedInUser} />}
+              />
+              <Route
+                path="/editUserProfile"
+                element={
+                  <UserEditProfile
+                    user={loggedInUser}
+                    setLoggedInUser={setLoggedInUser}
+                  />
+                }
+              />
 
               <Route
                 path="/SellerLogin"
                 element={<SellerLogin setLoggedinSeller={setLoggedinSeller} />}
               />
               <Route path="/SellerDashboard" element={<SellerDashboard />} />
-              <Route path="/SellerProducts" element={<SellerProducts />} />
+              <Route
+                path="/SellerProducts"
+                element={<SellerProducts seller={loggedinSeller} />}
+              />
               <Route path="/SellerOrders" element={<SellerOrders />} />
               <Route
                 path="/SellerProfile"
                 element={<SellerProfile seller={loggedinSeller} />}
               />
-              <Route path="/SellerEditProfile" element={<SellerEditProfile setLoggedinSeller={setLoggedinSeller} seller={loggedinSeller}  edit={true}/>} />
+              <Route
+                path="/SellerEditProfile"
+                element={
+                  <SellerEditProfile
+                    setLoggedinSeller={setLoggedinSeller}
+                    seller={loggedinSeller}
+                    edit={true}
+                  />
+                }
+              />
+              <Route path="/addProduct" element ={<AddProducts seller={loggedinSeller}/>} />
 
               <Route
                 path="/grocery"
@@ -105,7 +128,7 @@ const AppLayout = () => {
               <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
             </Routes>
           )}
-            
+
           <Footer />
           <ToastContainer />
         </div>
