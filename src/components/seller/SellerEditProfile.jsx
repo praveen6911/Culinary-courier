@@ -25,9 +25,13 @@ const EditSellerProfile = ({ setLoggedinSeller, seller }) => {
         address: seller.address,
         phone: seller.phone,
         image: seller.image,
+        cuisines: seller.cuisines,
+        costForTwo: seller.costForTwo,
+        rating: seller.rating,
         description: seller.description,
         password: seller.password,
       });
+      console.log("kothadhi",seller)
       setImageUrl(seller.image); // Set initial image URL
     } else {
       toast.error("Failed to load profile data.");
@@ -139,6 +143,33 @@ const EditSellerProfile = ({ setLoggedinSeller, seller }) => {
             />
           </label>
           <label>
+            Cuisines:
+            <input
+              type="text"
+              name="cuisines"
+              value={profileData.cuisines || ""}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Cost For Two:
+            <input
+              type="number"
+              name="costForTwo"
+              value={profileData.costForTwo || ""}
+              onChange={handleChange}
+            />
+          </label>
+          <label >
+            Rating:
+            <input
+              type="number"
+              name="rating"
+              value={profileData.rating || ""}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
             Phone:
             <input
               type="tel"
@@ -165,6 +196,7 @@ const EditSellerProfile = ({ setLoggedinSeller, seller }) => {
               onChange={handleChange}
             />
           </label>
+
           <button type="submit">Save Changes</button>
         </form>
       </div>

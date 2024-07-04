@@ -6,13 +6,8 @@ const SellerHeader = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Implement your logout logic here, for example:
-    // - Clear authentication tokens
-    // - Clear user state
-    // - Redirect to login page
-    // This is just a placeholder logic
-    localStorage.removeItem('sellerToken'); 
-    navigate('/login');
+  navigate('/SellerLogin');
+
   };
 
   return (

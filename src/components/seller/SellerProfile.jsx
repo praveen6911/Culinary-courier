@@ -3,12 +3,17 @@ import '../seller/styles/SellerProfile.css';
 import SellerHeader from './SellerHeader';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SellerProfile = ({ seller }) => {
   const [profileData, setProfileData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (seller) {
+    if (!seller) {
+      // If seller is null, navigate to SellerLogin
+      navigate('/SellerLogin');
+    } else {
       setProfileData({
         name: seller.username,
         email: seller.email,
@@ -19,11 +24,11 @@ const SellerProfile = ({ seller }) => {
         description: seller.description
       });
       toast.success('Profile data loaded successfully!');
-    } else {
-      toast.error('Failed to load profile data.');
     }
-  }, [seller]); // Update when seller prop changes
-  console.log("image",profileData.image)
+  }, [seller, navigate]);
+
+  if (!seller) return null; // Optionally handle case where seller is not available yet
+
   return (
     <div>
       <SellerHeader />
@@ -35,7 +40,7 @@ const SellerProfile = ({ seller }) => {
           <p><strong>Restaurant:</strong> {profileData.restaurant}</p>
           <p><strong>Address:</strong> {profileData.address}</p>
           <p><strong>Phone:</strong> {profileData.phone}</p>
-          <p>Image: <img src={seller.image} alt="Profile" id='profileimage' /></p>
+          <p>Image: <img src={profileData.image} alt="Profile" id='profileimage' /></p>
           <p><strong>Description:</strong> {profileData.description}</p>
           <Link to="/SellerEditProfile"><button>Edit Profile</button></Link>
         </div>

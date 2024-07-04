@@ -1,0 +1,82 @@
+.signup-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 500px;
+  }
+  
+  .logo img {
+    width: 150px;
+    margin-bottom: 1rem;
+  }
+  
+  .signup-container h1 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 2rem;
+  }
+  
+  .signup-container p {
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group button {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .form-group .form-group label[htmlFor="signup"],
+  .form-group .form-group label[htmlFor="login"] {
+    margin-top: 1rem;
+  }
+  
+  .form-group a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .form-group a:hover {
+    text-decoration: underline;
+  }
+  

@@ -11,13 +11,13 @@ const sellerSchema = new mongoose.Schema(
       required: true,
     },
     restaurant: {
-        type: String,
-        required: true,
-      },
-      address:{
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
     phone: {
       type: String,
       required: true,
@@ -34,9 +34,21 @@ const sellerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    costForTwo: {
+      type: String,
+      required: true,
+    },
+    rating: {
+      type: String,
+      required: true,
+    },
+    cuisines: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
-);  
+);
 
 const Seller = mongoose.model("Seller", sellerSchema);
 

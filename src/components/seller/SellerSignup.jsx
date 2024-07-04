@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import SellerHeader from './SellerHeader';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import app from "../../firebase";
+import "../seller/styles/SellerSignup.module.css";
+import { LOGO_URL } from '../../utils/constants';
 
 const SellerSignup = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +15,9 @@ const SellerSignup = () => {
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
   const [password, setPassword] = useState('');
+  const [costForTwo, setCostForTwo] = useState('');
+  const [rating, setRating] = useState('');
+  const [cuisines, setCuisines] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -101,7 +106,7 @@ const SellerSignup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, restaurant, address, phone, image: imageUrl, description, password }),
+        body: JSON.stringify({ username, email, restaurant, address, phone, image: imageUrl, description, password, costForTwo, rating, cuisines }),
       });
 
       if (!response.ok) {
@@ -116,101 +121,133 @@ const SellerSignup = () => {
   };
 
   return (
-    <div>
-      <SellerHeader />
-      <div className="signup-container">
-        <h2>Seller Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            {usernameError && <p className="error-message">{usernameError}</p>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            {emailError && <p className="error-message">{emailError}</p>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="restaurant">Restaurant:</label>
-            <input
-              type="text"
-              id="restaurant"
-              value={restaurant}
-              onChange={(e) => setRestaurant(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="address">Address:</label>
-            <input
-              type="text"
-              id="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone">Phone:</label>
-            <input
-              type="text"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="image">Image:</label>
-            <input
-              type="file"
-              id="image"
-              onChange={handleImageChange}
-              required
-            />
-            <button disabled={uploading}>{uploading ? "Uploading..." : "Upload"}</button>
-          </div>
-          <div className="form-group">
-            <label htmlFor="description">Description:</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {passwordError && <p className="error-message">{passwordError}</p>}
-          </div>
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit">Sign Up</button>
-          <div className="form-group">
-            <label htmlFor="signup">Already have an account?</label>
-            <Link to="/SellerLogin">Login</Link>
-          </div>
-        </form>
-      </div>
+    <div className="signup-container">
+      <Link to="/" className="logo">
+        <img src={LOGO_URL} alt="Logo" />
+      </Link>
+      <h1>Welcome Seller</h1>
+      <p>Please sign up to continue</p>
+      <h2>Seller Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          {usernameError && <p className="error-message">{usernameError}</p>}
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {emailError && <p className="error-message">{emailError}</p>}
+        </div>
+        <div className="form-group">
+          <label htmlFor="restaurant">Restaurant:</label>
+          <input
+            type="text"
+            id="restaurant"
+            value={restaurant}
+            onChange={(e) => setRestaurant(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone:</label>
+          <input
+            type="text"
+            id="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="image">Image:</label>
+          <input
+            type="file"
+            id="image"
+            onChange={handleImageChange}
+            required
+          />
+          <button disabled={uploading}>{uploading ? "Uploading..." : "Upload"}</button>
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="costForTwo">Cost for Two:</label>
+          <input
+            type="text"
+            id="costForTwo"
+            value={costForTwo}
+            onChange={(e) => setCostForTwo(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="rating">Rating:</label>
+          <input
+            type="text"
+            id="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="cuisines">Cuisines Available:</label>
+          <input
+            type="text"
+            id="cuisines"
+            value={cuisines}
+            onChange={(e) => setCuisines(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {passwordError && <p className="error-message">{passwordError}</p>}
+        </div>
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit">Sign Up</button>
+        <div className="form-group">
+          <label htmlFor="signup">Already have an account?</label>
+          <Link to="/SellerLogin">Login</Link>
+        </div>
+      </form>
     </div>
   );
 };

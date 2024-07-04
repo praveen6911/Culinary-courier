@@ -29,7 +29,7 @@ const SellerProducts = ({ seller }) => {
 
   return (
     <div className="seller-products">
-      <SellerHeader />
+      {/* <SellerHeader /> */}
       <h2>Products</h2>
       <ul>
         {products.map(product => (

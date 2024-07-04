@@ -116,14 +116,14 @@ app.get("/sellersignup", (req, res) => {
 
 app.post("/create-seller", async (req, res) => {
   try {
-    const { username, email, restaurant, address, phone, image, description, password } = req.body;
+    const { username, email, restaurant, address, phone, image, description, password, costForTwo, rating, cuisines } = req.body;
 
     // Validate request body
-    if (!username || !email || !restaurant || !address || !phone || !image || !description || !password) {
+    if (!username || !email || !restaurant || !address || !phone || !image || !description || !password || !costForTwo || !rating || !cuisines) {
       return res.status(400).send({ error: "All fields are required" });
     }
 
-    const newSeller = new Seller({ username, email, password, restaurant, address, phone, image, description });
+    const newSeller = new Seller({ username, email, password, restaurant, address, phone, image, description, costForTwo, rating, cuisines });
     await newSeller.save();
     res.redirect("/sellers");
   } catch (err) {
@@ -131,6 +131,7 @@ app.post("/create-seller", async (req, res) => {
     res.status(500).send({ error: "Failed to create seller", details: err.message });
   }
 });
+
 
 app.get("/sellers", async (req, res) => {
   try {
@@ -155,15 +156,16 @@ app.get("/updateSeller/:id", async (req, res) => {
 
 app.put("/update-Seller/:id", async (req, res) => {
   try {
-    const { username, email, restaurant, address, phone, image, description, password } = req.body;
+    const { username, email, restaurant, address, phone, image, description, password, costForTwo, rating, cuisines } = req.body;
+
     // Validate request body
-    if (!username || !email || !restaurant || !address || !phone || !image || !description || !password) {
+    if (!username || !email || !restaurant || !address || !phone || !image || !description || !password || !costForTwo || !rating || !cuisines) {
       return res.status(400).send({ error: "All fields are required" });
     }
 
     const seller = await Seller.findByIdAndUpdate(
       req.params.id,
-      { username, email, restaurant, address, phone, image, description, password },
+      { username, email, restaurant, address, phone, image, description, password, costForTwo, rating, cuisines },
       { new: true }
     );
 
@@ -177,6 +179,7 @@ app.put("/update-Seller/:id", async (req, res) => {
     res.status(500).send({ error: "Failed to update seller", details: error.message });
   }
 });
+
 
 
 app.put("/updateSeller/:id", async (req, res) => {

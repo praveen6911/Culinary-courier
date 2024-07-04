@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SellerHeader from './SellerHeader';
 import { toast } from 'react-toastify';
+import "../seller/styles/SellerLogin.css" 
+import { LOGO_URL } from '../../utils/constants';
 
 
-function SellerLogin({setLoggedinSeller}) {
+function SellerLogin({ setLoggedinSeller }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [sellers, setSellers] = useState([]);
@@ -33,12 +35,10 @@ function SellerLogin({setLoggedinSeller}) {
     console.log("Fetched sellers:", sellers);
     const seller = sellers.find(u => u.email === email && u.password === password);
     console.log("Found seller:", seller);
-      if (seller) {
+    if (seller) {
       setLoggedinSeller(seller);
       navigate("/SellerDashboard");
       toast.success('Logged in successfully!');
-
-
     } else {
       setError("Invalid email or password");
       toast.error('Invalid email or password');
@@ -46,10 +46,12 @@ function SellerLogin({setLoggedinSeller}) {
   };
 
   return (
-    <div>
-    <SellerHeader />
     <div className="login-container">
-      
+      <Link to="/" className="logo">
+            <img src={LOGO_URL} alt="Logo" />
+          </Link>
+      <h1>Welcome Seller</h1>
+      <p>Please log in to continue</p>
       <h2>Seller Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -79,7 +81,6 @@ function SellerLogin({setLoggedinSeller}) {
           <Link to="/SellerSignup">Sign Up</Link>
         </div>
       </form>
-    </div>
     </div>
   );
 }
