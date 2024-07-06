@@ -134,13 +134,17 @@ const Body = () => {
       </div>
         <div><h2>Local Restaurants</h2></div>
       <div className="restaurant-container">
-        
         {localrestaurants.map((restaurant) => {
           return (
+            <Link to={"/restaurants/" + restaurant._id} key={restaurant._id} style={{
+              textDecoration: 'none',
+              color: 'inherit',
+            }}>
             <LocalRestaurantCard
               key={restaurant._id}
               restaurantData={restaurant}
             />
+            </Link>
           );
         })}
       </div>

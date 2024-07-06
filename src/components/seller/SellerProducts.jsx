@@ -29,7 +29,7 @@ const SellerProducts = ({ seller }) => {
 
   return (
     <div className="seller-products">
-      {/* <SellerHeader /> */}
+      {<SellerHeader />}
       <h2>Products</h2>
       <ul>
         {products.map(product => (
@@ -37,6 +37,7 @@ const SellerProducts = ({ seller }) => {
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <p>Price: ${product.price}</p>
+            <img src={product.image} alt="" />
             <p>Seller: {product.sellerId}</p>
           </li>
         ))}

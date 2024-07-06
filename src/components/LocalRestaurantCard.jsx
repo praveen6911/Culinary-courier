@@ -28,7 +28,7 @@ const LocalRestaurantCard = (props) => {
         src= {image}
         alt="restaurant-logo" 
       />
-      <h3 className="restaurant-details">{restaurant}</h3>
+      <h3 className="restaurant-details" style={{ fontSize: 20 , color: 'black' }}>{restaurant}</h3>
       <h4 className='rating' >{renderStars(rating)}</h4>
       <h4 className="restaurant-details"> {costForTwo} for two</h4>
 

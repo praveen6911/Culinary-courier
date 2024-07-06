@@ -34,6 +34,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserEditProfile from "./components/UserEditProfile";
 import AddProducts from "./components/seller/AddProducts";
+import AboutUs from "./components/AboutPage";
+import LocalRestaurantMenu from "./components/LocalRestaurantMenu";
 
 const Grocery = lazy(() => import("./components/grocery"));
 const AppLayout = () => {
@@ -95,7 +97,7 @@ const AppLayout = () => {
                 path="/SellerLogin"
                 element={<SellerLogin setLoggedinSeller={setLoggedinSeller} />}
               />
-              <Route path="/SellerDashboard" element={<SellerDashboard />} />
+              <Route path="/SellerDashboard" element={<SellerDashboard seller={loggedinSeller} />} />
               <Route
                 path="/SellerProducts"
                 element={<SellerProducts seller={loggedinSeller} />}
@@ -125,7 +127,8 @@ const AppLayout = () => {
                   </Suspense>
                 }
               />
-              <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
+              <Route path="/restaurant/:resId" element={<RestaurantMenu />} /> 
+              <Route path="/restaurants/:resId" element={<LocalRestaurantMenu/>}/>             
             </Routes>
           )}
 

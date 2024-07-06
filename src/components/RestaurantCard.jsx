@@ -30,10 +30,11 @@ const RestaurantCard = (props) => {
         src={CDN_URL + cloudinaryImageId}
         alt="restaurant-logo" 
       />
-      <h3 className="restaurant-details">{name}</h3>
+      <h3 className="restaurant-details" style={{ fontSize: 20 , color: 'black' }}>{name}</h3>
+
       <h4 className='rating' >{renderStars(avgRating)}</h4>
-      <h4 className="restaurant-details">{costForTwo}</h4>
-      <h4 className="restaurant-details">{cuisines.join(", ")}</h4>
+      <h4 className="restaurant-details" style={{ marginBottom: "15px" }}>{costForTwo}</h4>
+      <h4 className="restaurant-details" style={{ marginTop: "15px" }}>{cuisines.join(", ")}</h4>
     </div>
   );
 };

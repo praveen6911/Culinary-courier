@@ -1,0 +1,43 @@
+.menu-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .restaurant-info {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .restaurant-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .menu-list {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .product-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-item h3 {
+    margin-bottom: 5px;
+  }
+  
+  .product-item p {
+    margin: 5px 0;
+  }
+  

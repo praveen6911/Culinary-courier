@@ -44,13 +44,7 @@ const RestaurantMenu = () => {
           <div className="restaurant-details">
             <div
               className="restaurant-rating"
-              style={
-                restaurant?.avgRating < 4
-                  ? { backgroundColor: "var(--light-red)" }
-                  : restaurant?.avgRating === "--"
-                  ? { backgroundColor: "white", color: "black" }
-                  : { color: "white" }
-              }
+              
             >
               <i className="fa-solid fa-star"></i>
               <span>{restaurant?.avgRating}</span>

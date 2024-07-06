@@ -142,6 +142,17 @@ app.get("/sellers", async (req, res) => {
   }
 });
 
+app.get("/sellers/:id", async (req, res) => {
+  try {
+    const seller = await Seller.findById(req.params.id);
+    if (!seller) {
+      return res.status(404).send({ error: "Seller not found" });
+    }
+    res.send (seller);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch seller", details: error });
+  }
+});
 app.get("/updateSeller/:id", async (req, res) => {
   try {
     const seller = await Seller.findById(req.params.id);
@@ -235,27 +246,41 @@ app.get("/products", async (req, res) => {
     res.status(500).send({ error: "Failed to fetch sellers", details: error });
   }
 });
-
-app.get("/products/:id", async (req, res) => {
+app.get("/products/:sellerId", async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    if (!product) {
-      return res.status(404).send({ error: "Product not found" });
+    const { sellerId } = req.params;
+    console.log("sellerId", sellerId);
+
+    // Ensure sellerId is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(sellerId)) {
+      return res.status(400).send({ error: "Invalid seller ID" });
     }
-    res.render("updateProduct", { product });
+
+    const products = await Product.find({ sellerId });
+
+    if (!products.length) {
+      return res.status(404).send({ error: "No products found for this seller" });
+    }
+
+    res.status(200).send(products);
   } catch (error) {
-    res.status(500).send({ error: "Failed to fetch product", details: error });
+    console.error("Failed to fetch products for seller:", error.message);
+    res.status(500).send({ error: "Failed to fetch products", details: error.message });
   }
 });
 
+
+
+
 app.post('/addProduct', async (req, res) => {
   try {
-    const { name, description, price, sellerId } = req.body;
+    const { name, description, price,image, sellerId } = req.body;
     
     const newProduct = new Product({
       name,
       description,
       price,
+      image,
       sellerId,
     });
 
