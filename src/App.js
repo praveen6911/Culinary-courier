@@ -53,7 +53,7 @@ const AppLayout = () => {
     setshowsellerlogin(loggedinSeller === null);
   }, [loggedinSeller]);
 
-  console.log("loggedinSeller", loggedinSeller);
+  // console.log("loggedinSeller", loggedinSeller);
 
   return (
     <Provider store={appStore}>
@@ -76,7 +76,7 @@ const AppLayout = () => {
               <Route path="/" element={<Body />} />
               <Route path="/aboutus" element={<AboutPage />} />
               <Route path="/contactus" element={<ContactUs />} />
-              <Route path="/cart" element={<Cart />} />
+              <Route path="/cart" element={<Cart user={loggedInUser} />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/Sellersignup" element={<SellerSignup />} />
               <Route
@@ -127,8 +127,8 @@ const AppLayout = () => {
                   </Suspense>
                 }
               />
-              <Route path="/restaurant/:resId" element={<RestaurantMenu />} /> 
-              <Route path="/restaurants/:resId" element={<LocalRestaurantMenu/>}/>             
+              <Route path="/restaurant/:resId" element={<RestaurantMenu user={loggedInUser} />} /> 
+              <Route path="/restaurants/:resId" element={<LocalRestaurantMenu user={loggedInUser}/>}/>             
             </Routes>
           )}
 

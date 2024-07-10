@@ -143,6 +143,7 @@ const Body = () => {
             <LocalRestaurantCard
               key={restaurant._id}
               restaurantData={restaurant}
+              user={loggedInUser}
             />
             </Link>
           );

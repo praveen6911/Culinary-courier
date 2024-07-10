@@ -4,7 +4,8 @@ import '../styles/Body.css';
 const LocalRestaurantCard = (props) => {
   const { restaurantData } = props;
   const { restaurant, cuisines,image ,costForTwo,rating} = restaurantData;
-  console.log("idi okati ",restaurantData)
+  // console.log("idi okati kaadu ",props.user)
+  // console.log("idi okati ",restaurantData)
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);

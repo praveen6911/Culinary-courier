@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import "../styles/LocalRestaurantMenu.css"; // Import CSS file
 import { MenuShimmer } from './Shimmer';
 
-const LocalRestaurantMenu = () => {
+const LocalRestaurantMenu = ({ user }) => {
   const { resId } = useParams();
   const [products, setProducts] = useState([]);
   const [seller, setSeller] = useState({});
@@ -17,7 +17,7 @@ const LocalRestaurantMenu = () => {
         }
         const data = await response.json();
         setProducts(data);
-        console.log("kothadhi",data);
+        console.log("kothadhi", data);
       } catch (error) {
         console.error(error);
       }
@@ -35,7 +35,8 @@ const LocalRestaurantMenu = () => {
         }
         const data = await response.json();
         setSeller(data);
-        
+        console.log("kothadhi", data);
+        console.log("kothadhiii", seller);
       } catch (error) {
         console.error(error);
       }
@@ -44,9 +45,34 @@ const LocalRestaurantMenu = () => {
     fetchSeller();
   }, [resId]);
 
-  const handleAddItem = (item) => {
-    // Logic to add item to cart or order
-    console.log(`Added item: ${item.name}`);
+  const handleAddItem = async (item) => {
+    
+    try {
+      const response = await fetch('http://localhost:5000/add-to-cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: item._id,
+          name: item.name,
+          description: item.description,
+          price: item.price,
+          image: item.image,
+          sellerId: resId,
+          userId: user._id, 
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add item to cart');
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
   };
 
   return !products.length || !seller.restaurant ? (

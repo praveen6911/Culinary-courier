@@ -8,14 +8,27 @@ import { useSelector } from "react-redux";
 
   
 
-const Header = ({ user ,setLoggedInUser}) => {
+const Header = ({ user ,setLoggedInUser , }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+
+  const fetchCartItems = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/carts");
+      const data = await response.json();
+      const filteredCartItems = data.filter((item) => item.userId === user._id);
+      setCartItems(filteredCartItems);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // const onlineStatus = useOnlineStatus();
   // const username=useContext(UserContext);
   const navigate = useNavigate();
-  const cartItems=useSelector((store)=>{
-   return store.cart.items
-  })
+  // const cartItems=useSelector((store)=>{
+  //  return store.cart.items
+  // })
 
 
  
@@ -33,7 +46,7 @@ const Header = ({ user ,setLoggedInUser}) => {
   
   
 
-  console.log("praveen",user) 
+  // console.log("praveen",user) 
  
 
   
@@ -49,7 +62,7 @@ const Header = ({ user ,setLoggedInUser}) => {
           <li><Link to={"/"} className="header-link">Home</Link></li>
           <li><Link to={"/aboutus"} className="header-link">About Us</Link></li>
           {<li > <Link to={"/contactus" } className="header-link">Contact Us</Link></li>}
-          <li><Link to={"/cart"} className="header-link">Cart-({cartItems.length})</Link></li>
+          <li><Link to={"/cart"} className="header-link">Cart-</Link></li>
           <li > <Link to={"/SellerLogin"} className="header-link">Seller</Link></li>
           <li><Link to={"/UserProfile"} className="header-link">Profile</Link></li>
           

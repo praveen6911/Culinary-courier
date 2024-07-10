@@ -34,6 +34,8 @@ mongoose
 const User = require("./models/users"); 
 const Seller = require("./models/sellers");
 const Product = require('./models/products');
+const Cart = require('./models/carts'); // Import Cart model
+
 
 
 
@@ -290,6 +292,71 @@ app.post('/addProduct', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+
+app.post('/add-to-cart', async (req, res) => {
+  try {
+    const { productId,name, description, price, image, sellerId, userId } = req.body;
+    
+    const newCartItem = new Cart({
+      productId,
+      name,
+      description,
+      price,
+      image,
+      quantity: 1,
+      sellerId,
+      userId,
+    });
+
+    await newCartItem.save();
+    res.status(200).json({ message: "Item added to cart successfully" });
+  } catch (error) {
+    console.error("Failed to add item to cart:", error.message);
+    res.status(500).json({ error: "Failed to add item to cart", details: error.message });
+  }
+});
+
+app.get("/carts", async (req, res) => {
+  try {
+    const carts = await Cart.find({});
+    res.status(200).send(carts);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch sellers", details: error });
+  }
+});
+
+app.put("/cart/increase-quantity/:id", async (req, res) => {
+  try {
+    const cartItemId = req.params.id;
+    const updatedItem = await Cart.findByIdAndUpdate(
+      cartItemId,
+      { $inc: { quantity: 1 } },
+      { new: true }
+    );
+    res.status(200).send(updatedItem);
+  } catch (error) {
+    console.error("Failed to increase item quantity:", error.message);
+    res.status(500).send({ error: "Failed to increase item quantity", details: error.message });
+  }
+});
+
+app.put("/cart/decrease-quantity/:id", async (req, res) => {
+  try {
+    const cartItemId = req.params.id;
+    const updatedItem = await Cart.findByIdAndUpdate(
+      cartItemId,
+      { $inc: { quantity: -1 } },
+      { new: true }
+    );
+    res.status(200).send(updatedItem);
+  } catch (error) {
+    console.error("Failed to decrease item quantity:", error.message);
+    res.status(500).send({ error: "Failed to decrease item quantity", details: error.message });
+  }
+});
+
+
 
 
 // Start server

@@ -12,7 +12,7 @@ import useRestaurantMenu from "../components/hooks/useRestaurantMenu";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/slices/cartSlice";
 
-const RestaurantMenu = () => {
+const RestaurantMenu = ({user}) => {
   const { resId } = useParams();
   const [restaurant, menuItems] = useRestaurantMenu(
     SWIGGY_MENU_API_URL,
@@ -22,10 +22,38 @@ const RestaurantMenu = () => {
   );
 
   const dispatch = useDispatch();
-  const handleAddItem = (item) => {
-    // Dispatch an action 
-    dispatch(addItem(item));
+  // const handleAddItem = (item) => {
+  //   // Dispatch an action 
+  //   // dispatch(addItem(item));
+  //   console.log(item)
 
+  // };
+  const handleAddItem = async (item) => {
+    try {
+      const response = await fetch('http://localhost:5000/add-to-cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: item.name,
+          description: item.category,
+          price: item.price,
+          image:ITEM_CDN_URL + item?.imageId,
+          sellerId: resId,
+          userId: user._id, 
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add item to cart');
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
   };
 
   return !restaurant ? (
